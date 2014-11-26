@@ -6,16 +6,16 @@ import (
     "fmt"
 )
 
-type TlsHandshake struct {
+type TLSRecordLayer struct {
 	contentType uint8
 	version     uint16
 	length      uint16
 	fragment    []byte
 }
 
-func DecodeRecord(p *TlsHandshake, data []byte) error {
+func DecodeRecord(p *TLSRecordLayer, data []byte) error {
     if len(data) < 5 {
-        return errors.New("Payload to short to be a TLS packet.")
+        return errors.New("Payload too short to be a TLS packet.")
     }
 
     p.contentType = uint8(data[0])

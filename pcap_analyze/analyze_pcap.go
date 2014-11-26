@@ -20,7 +20,7 @@ func main() {
 		for packet := range packetSource.Packets() {
 			//spew.Dump(packet.ApplicationLayer().Payload())
             payload := packet.ApplicationLayer().Payload()
-            var p TLSHandshakeDecoder.TlsHandshake
+            var p TLSHandshakeDecoder.TLSRecordLayer
             err = TLSHandshakeDecoder.DecodeRecord(&p, payload); if err != nil {
                 panic(err)
             } else {
