@@ -24,3 +24,4 @@ _testmain.go
 *.prof
 *.pcap
 .*.swp
+analyze_pcap
