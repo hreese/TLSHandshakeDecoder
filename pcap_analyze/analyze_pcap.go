@@ -4,8 +4,8 @@ import (
 	"code.google.com/p/gopacket"
 	"code.google.com/p/gopacket/pcap"
 	"github.com/hreese/TLSHandshakeDecoder"
-	"fmt"
-	_ "github.com/davecgh/go-spew/spew"
+	_ "fmt"
+	"github.com/davecgh/go-spew/spew"
 	_ "io"
 )
 
@@ -23,16 +23,19 @@ func main() {
                 panic(err)
             } else {
                 // decode handshake
+                spew.Dump(p)
                 var ph TLSHandshakeDecoder.TLSHandshake
-                err = TLSHandshakeDecoder.TLSDecodeHandshake(&ph, p.fragment); if err != nil {
+                err = TLSHandshakeDecoder.TLSDecodeHandshake(&ph, p.Fragment); if err != nil {
                     panic(err)
                 } else {
                     // decode client hello packet
+                    spew.Dump(ph)
                     var pch TLSHandshakeDecoder.TLSClientHello
-                    TLSHandshakeDecoder.TLSDecodeClientHello(&pch, ph.data); if err != nil {
+                    err = TLSHandshakeDecoder.TLSDecodeClientHello(&pch, ph.Body); if err != nil {
                         panic(err)
                     } else {
-                        fmt.Printf("%#v\n", pch)
+                        //fmt.Printf("%#v\n", pch)
+                        spew.Dump(pch)
                     }
                 }
             }

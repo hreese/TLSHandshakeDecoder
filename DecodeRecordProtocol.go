@@ -10,7 +10,7 @@ type TLSRecordLayer struct {
 	contentType uint8
 	version     uint16
 	length      uint16
-	fragment    []byte
+	Fragment    []byte
 }
 
 func DecodeRecord(p *TLSRecordLayer, data []byte) error {
@@ -22,8 +22,8 @@ func DecodeRecord(p *TLSRecordLayer, data []byte) error {
 	p.version = uint16(data[1])<<8 | uint16(data[2])
 	p.length = uint16(data[3])<<8 | uint16(data[4])
 
-	p.fragment = make([]byte, p.length)
-	l := copy(p.fragment, data[5:5+p.length])
+	p.Fragment = make([]byte, p.length)
+	l := copy(p.Fragment, data[5:5+p.length])
 	if l < int(p.length) {
 		return fmt.Errorf("Payload to short: copied %d, expected %d.", l, p.length)
 	}
