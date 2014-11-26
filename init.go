@@ -1,19 +1,20 @@
 package TLSHandshakeDecoder
 
 import (
-	_ "code.google.com/p/gopacket"
-	_ "code.google.com/p/gopacket/pcap"
 	"encoding/json"
 	"io/ioutil"
 )
 
-// list of official cipher suites
-type CipherSuite struct {
-	Index uint
-	Value uint16
-	Name  string
+var (
+	CiphersByIndex, CiphersByValue map[uint]CipherSuite
+)
+
+func init() {
+	CiphersByIndex, CiphersByValue := ReadTLSCipherlist("iana_tls-params_min.json")
+	_, _ = CiphersByIndex, CiphersByValue
 }
 
+// TODO: create go literals from python helper script
 func ReadTLSCipherlist(filename string) (map[uint]CipherSuite, map[uint]CipherSuite) {
 	ciphers := make([]CipherSuite, 0)
 	// read cipher suite definition from (slightly modified) IANA list

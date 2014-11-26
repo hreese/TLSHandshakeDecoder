@@ -1,5 +1,12 @@
 package TLSHandshakeDecoder
 
+// list of official cipher suites
+type CipherSuite struct {
+	Index uint
+	Value uint16
+	Name  string
+}
+
 const (
 	TypeChangeCypherSpec uint8 = 20
 	TypeAlert            uint8 = 21

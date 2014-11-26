@@ -23,7 +23,7 @@ type TLSClientHello struct {
 	// TODO: add support for extensions
 }
 
-func DecodeHandshake(p *TLSHandshake, data []byte) error {
+func TLSDecodeHandshake(p *TLSHandshake, data []byte) error {
 	if len(data) < 4 {
 		return errors.New("Handshake body too short (<4).")
 	}
@@ -40,7 +40,7 @@ func DecodeHandshake(p *TLSHandshake, data []byte) error {
 	return nil
 }
 
-func DecodeClientHello(p *TLSClientHello, data []byte) error {
+func TLSDecodeClientHello(p *TLSClientHello, data []byte) error {
 	if len(data) < 38 {
 		return errors.New("Handshake body too short (<4).")
 	}
