@@ -38,4 +38,3 @@ const (
 	extensionSessionTicket       uint16 = 35
 	extensionRenegotiation       uint16 = 0xff01
 )
-
