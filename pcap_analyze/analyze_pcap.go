@@ -23,13 +23,13 @@ func main() {
                 panic(err)
             } else {
                 // decode handshake
-                spew.Dump(p)
+                //spew.Dump(p)
                 var ph TLSHandshakeDecoder.TLSHandshake
                 err = TLSHandshakeDecoder.TLSDecodeHandshake(&ph, p.Fragment); if err != nil {
                     panic(err)
                 } else {
                     // decode client hello packet
-                    spew.Dump(ph)
+                    //spew.Dump(ph)
                     var pch TLSHandshakeDecoder.TLSClientHello
                     err = TLSHandshakeDecoder.TLSDecodeClientHello(&pch, ph.Body); if err != nil {
                         panic(err)
@@ -39,7 +39,7 @@ func main() {
                     }
                 }
             }
-            return
+            //return
 		}
 	}
 }
